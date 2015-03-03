@@ -1,0 +1,16 @@
+<h1>Chat!</h1>
+
+<select ng-options="channel as channel.channel_name for channel in AppCtrl.chatService.channels"
+ng-model="AppCtrl.selectedChannel"
+ng-change="AppCtrl.selectedChannel.loadMessages()"></select>
+<br>
+
+<input type="text" name="name" ng-model="AppCtrl.newMessage.body" ng-disabled="!AppCtrl.selectedChannel" placeholder="new message goes here">
+<br>
+<button name="button" ng-click="AppCtrl.selectedChannel.sendMessage(AppCtrl.newMessage)" ng-disabled="!AppCtrl.selectedChannel">
+  Send Message
+</button>
+
+<ul>
+  <li ng-repeat="message in AppCtrl.selectedChannel.messages">{{message.body}}</li>
+</ul>
